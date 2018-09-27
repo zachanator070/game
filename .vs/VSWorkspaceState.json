@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\common",
+    "\\external",
+    "\\external\\glew-2.1.0\\include\\GL",
+    "\\game"
+  ],
+  "SelectedNode": "\\CMakeLists.txt",
+  "PreviewInSolutionExplorer": false
+}
