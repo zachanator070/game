@@ -4,18 +4,22 @@ project (game)
 
 find_package(OpenGL REQUIRED)
 
+set(LIBS_DIR
+	lib
+)
+
 # Compile external dependencies 
-add_subdirectory (external)
+add_subdirectory (${LIBS_DIR})
 
 include_directories(
-	external/glfw-3.2.1/include/
-	external/glew-2.1.0/include/
+	${LIBS_DIR}/${GLFW_INCLUDE}
+	${LIBS_DIR}/${GLEW_INCLUDE}
 )
 
 set(ALL_LIBS
 	${OPENGL_LIBRARY}
 	glfw
-	GLEW_1130
+	glew
 )
 
 add_definitions(
@@ -26,6 +30,7 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 
+# compile main executable
 add_executable(game 
 	game/game.cpp
 	common/shader.cpp
