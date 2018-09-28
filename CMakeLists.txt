@@ -12,8 +12,8 @@ set(LIBS_DIR
 add_subdirectory (${LIBS_DIR})
 
 include_directories(
-	${LIBS_DIR}/${GLFW_INCLUDE}
-	${LIBS_DIR}/${GLEW_INCLUDE}
+	${LIBS_DIR}/glew-2.1.0/include
+	${LIBS_DIR}/glfw-3.2.1/include
 )
 
 set(ALL_LIBS
