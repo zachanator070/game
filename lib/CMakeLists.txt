@@ -1,3 +1,6 @@
+if(MSVC AND NOT "${MSVC_VERSION}" LESS 1400)
+	add_definitions( "/MP" )
+endif()
 
 find_package(OpenGL REQUIRED)
 
@@ -37,11 +40,11 @@ target_link_libraries(glew
 )
 
 ### GLM ###
-#add_subdirectory(glm)
-#set(GLM_INCLUDE
-#	glm
-#	PARENT_SCOPE
-#)
+add_subdirectory(glm)
+set(GLM_INCLUDE
+	glm
+	PARENT_SCOPE
+)
 
 
 ### ASSIMP ###
@@ -61,11 +64,12 @@ target_link_libraries(glew
 #	${ASSIMP_INCLUDE}/
 #)
 
-# add_subdirectory( assimp-4.1.0/contrib/zlib )
-
 # Compile without Boost
-# include_directories( assimp-4.1.0/code/BoostWorkaround )
-# add_definitions( -DASSIMP_BUILD_BOOST_WORKAROUND )
+include_directories(
+	assimp-4.1.0/code/BoostWorkaround 
+	assimp-4.1.0/include
+)
+add_definitions( -DASSIMP_BUILD_BOOST_WORKAROUND )
 
 # Compile AssImp
 # set(Assimp_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/assimp-4.1.0)
@@ -76,3 +80,4 @@ target_link_libraries(glew
 # set(BUILD_STATIC_LIB ON)
 # set(ZLIB_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zlib)
 
+add_subdirectory( assimp-4.1.0/contrib/zlib )
