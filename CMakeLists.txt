@@ -16,7 +16,10 @@ include_directories(
 	${LIBS_DIR}/glfw-3.2.1/include
 	${LIBS_DIR}/glm
 	${LIBS_DIR}/assimp-4.1.0/include
+	${CMAKE_BINARY_DIR}/lib/assimp-4.1.0/include
 	game
+	.
+	${CMAKE_BINARY_DIR}
 )
 
 set(ALL_LIBS
@@ -47,6 +50,12 @@ add_executable(game
 	game/gengine/texture.cpp
 	game/gengine/texture.hpp
 )
+
+FILE(COPY game/suzanne.obj DESTINATION "${CMAKE_BINARY_DIR}")
+FILE(COPY game/StandardShading.fragmentshader DESTINATION "${CMAKE_BINARY_DIR}")
+FILE(COPY game/StandardShading.vertexshader DESTINATION "${CMAKE_BINARY_DIR}")
+FILE(COPY game/uvmap.DDS DESTINATION "${CMAKE_BINARY_DIR}")
+
 target_link_libraries(game
 	${ALL_LIBS}
 )

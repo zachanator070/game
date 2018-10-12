@@ -40,44 +40,29 @@ target_link_libraries(glew
 )
 
 ### GLM ###
+set(GLM_TEST_ENABLE OFF CACHE BOOL "Build unit tests")
+
 add_subdirectory(glm)
 set(GLM_INCLUDE
 	glm
 	PARENT_SCOPE
 )
 
-
 ### ASSIMP ###
-# AssImp already has a CMakeLists.txt so let's use these
 
-# Compile built-in, modified version of Zlib
-#include(CheckIncludeFile)
-#include(CheckTypeSize)
-#include(CheckFunctionExists)
-
-#set(ASSIMP_INCLUDE
-#	assimp-4.1.0
-#	PARENT_SCOPE
-#)
-
-#include_directories(
-#	${ASSIMP_INCLUDE}/
-#)
-
-# Compile without Boost
 include_directories(
 	assimp-4.1.0/code/BoostWorkaround 
 	assimp-4.1.0/include
 )
+
+# Compile without Boost
 add_definitions( -DASSIMP_BUILD_BOOST_WORKAROUND )
 
-# Compile AssImp
-# set(Assimp_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/assimp-4.1.0)
-# set(ASSIMP_LIB_INSTALL_DIR ${Assimp_DIR} CACHE string "location of assimp" FORCE)
+set(BUILD_STATIC_LIB ON CACHE BOOL "Build unit tests")
 
-# set(LIBASSIMP_COMPONENT libassimp3.0-r1270-OGLtuts)
-# set(ZLIB_LIBRARIES zlib)
-# set(BUILD_STATIC_LIB ON)
-# set(ZLIB_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/zlib)
+set(ASSIMP_BUILD_ALL_IMPORTERS_BY_DEFAULT OFF CACHE BOOL "default value of all ASSIMP_BUILD_XXX_IMPORTER value")
+set(ASSIMP_BUILD_OBJ_IMPORTER ON CACHE BOOL "build the OBJ importer")
+set(ASSIMP_BUILD_3MF_IMPORTER ON CACHE BOOL "build the 3MF importer")
+set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "If the test suite for Assimp is built in addition to the library.")
 
-add_subdirectory( assimp-4.1.0/contrib/zlib )
+add_subdirectory( assimp-4.1.0 )
